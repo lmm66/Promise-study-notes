@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const p = new Promise((resolve, reject) => {
+            resolve('ok!');
+        })
+        const result = p.then((value) => {
+            return value;
+            // 1.抛出错误
+            throw '错误！';
+            // 2.返回结果为非Promise对象
+            return 521;
+            // 3.返回结果是Promise对象
+            return new Promise((resolve, reject) => {
+                resolve('success!');
+            })
+        }, (reason) => {
+            return reason;
+        })
+        console.log(result);
+        //状态：成功  结果：ok!
+        //状态：失败 结果：错误!
+        //状态：成功 结果：521
+        //状态：成功 结果：success!
+    </script>
+</body>
+
+</html>

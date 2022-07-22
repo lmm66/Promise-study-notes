@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const p = new Promise((resolve, reject) => {
+            resolve('OK!');
+        })
+        const p1 = new Promise((resolve, reject) => {
+            resolve('Oh Yeah!');
+        })
+        const p2 = new Promise((resolve, reject) => {
+            resolve('Nice!');
+        })
+        let p3 = Promise.all([p, p1, p2]);
+        console.log(p3); //状态:成功 结果:['OK!', 'Oh Yeah!', 'Nice!']
+
+
+        const p4 = new Promise((resolve, reject) => {
+            reject('Error!');
+        })
+        const p5 = new Promise((resolve, reject) => {
+            reject('No!');
+        })
+        let p6 = Promise.all([p, p1, p2, p4, p5]);
+        console.log(p6); //状态:失败 结果:Error! ----> 以数组中第一个状态失败的promise对象的失败结果作为失败结果
+    </script>
+</body>
+
+</html>

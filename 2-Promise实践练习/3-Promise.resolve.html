@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const p = Promise.resolve('OK!');
+        console.log(p); // 状态:成功  结果:OK!
+
+        const p1 = Promise.resolve(new Promise((resolve, reject) => {
+            resolve('OKK!');
+        }))
+        console.log(p1); // 状态:成功 结果:OKK!
+
+        const p2 = Promise.resolve(new Promise((resolve, reject) => {
+            reject('Error!');
+        }))
+        console.log(p2); // 状态:失败 结果:Error!
+        p2.catch(reason => {
+            console.log('Promise对象p2的失败结果为:' + reason);
+        })
+    </script>
+</body>
+
+</html>
